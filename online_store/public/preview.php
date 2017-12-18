@@ -1,4 +1,5 @@
 <?php 
+			session_start();
 
 			$page_title = "Book Preview";
 
@@ -8,7 +9,7 @@
 
 			include 'include/functions.php';
 
-			include 'include/header3.php';
+			include 'include/user_header.php';
 
 			include 'include/class.RecentlyViewed.php';
 

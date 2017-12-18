@@ -1,8 +1,12 @@
 <?php
+
+    $page_title = 'Registration';
+
+    $body_id    = 'register';
     
     include 'include/db.php';
 
-    include 'include/regheader.php';
+    include 'include/user_header.php';
 
     include 'include/controllers.php';
 

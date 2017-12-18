@@ -1,10 +1,10 @@
 <?php
-      session_start();
-      $_SESSION['active'] = true;
+      
+      $page_title = 'Home';
 
-      include 'include/header3.php';
+      $body_id    = 'home';
 
-      include 'include/db.php';
+      include 'include/user_header.php';
 
       include 'include/controllers.php';
 
@@ -22,6 +22,8 @@
 
 <div class="main">
     <div class="book-display">
+
+
       <?php
         topSelling($conn, function($data){
       ?>
@@ -36,11 +38,7 @@
         <h3 class="book-price"><?php echo $data['price'];?></h3>
 
           <?php  }); ?>
-        <!-- <form>
-          <label for="book-amout">Amount</label>
-          <input type="number" class="book-amount text-field">
-          <input class="def-button add-to-cart" type="submit" name="" value="Add to cart">
-        </form> -->
+        
       </div>
     </div>
     <div class="trending-books horizontal-book-list">
@@ -49,7 +47,7 @@
         <?php
               trending($conn, function($data){
                 while ($row = $data->fetch(PDO::FETCH_ASSOC)) {
-                  # code...
+                  
                 
         ?>
         <li class="book">
@@ -91,18 +89,7 @@
           <div class="book-price"><p><?php echo $row['price'];?></p></div>
         </li>
         <?php } });?>
-        <!-- <li class="book">
-          <a href="#"><div class="book-cover"></div></a>
-          <div class="book-price"><p>$50</p></div>
-        </li>
-        <li class="book">
-          <a href="#"><div class="book-cover"></div></a>
-          <div class="book-price"><p>$125</p></div>
-        </li>
-        <li class="book">
-          <a href="#"><div class="book-cover"></div></a>
-          <div class="book-price"><p>$90</p></div>
-        </li> -->
+
          <?php 
         include "recentlyviewed.php"; ?>
       </ul>
@@ -110,4 +97,9 @@
     
   </div>
 
- <<?php include 'include/footer.php'; ?>
+ <?php 
+
+
+ include 'include/footer.php';
+
+  ?>

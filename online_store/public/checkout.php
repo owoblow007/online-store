@@ -1,11 +1,15 @@
 <?php 
-      include 'include/header3.php';
+      $page_title = "Checkout";
 
-      include 'include/db.php';
+      $body_id    = "checkout";
+
+      include 'include/user_header.php';
+
+      //include 'include/db.php';
 
       include 'include/controllers.php';
 
-      include 'include/class.Checkout.php';
+      include_once 'include/class.Checkout.php';
 
       if (isset($_SESSION['id'])) {
         # code...
@@ -20,7 +24,7 @@
           $checkout = new Checkout();
 
           $totalPurchase = '$'.$checkout->getTotal($conn, $sid);
-          $Tologin ='<a href="login.php">'."<em>Please Login To Checkout</em"
+          $Tologin ='<a href="login.php">'."<em>Please Login To Checkout</em";
       }
 
       $errors = [];
@@ -37,7 +41,11 @@
           if (empty($_POST['code'])) {
               $errors['code'] = "Please Enter Post Code";
           }
-          if()
+          if(empty($errors)){
+            $clean = array_map('trim', $_POST);
+
+            $checkout->insertIntoCheckout($conn, $uid, $clean, $totalPurchase);
+          }
       }
  ?>
 
@@ -45,13 +53,16 @@
     <div class="checkout-form">
       <form class="def-modal-form">
         <div class="total-cost">
-          <h3>$2000 Total Purchase</h3>
+          <h3><?php echo $totalPurchase; ?>Total Purchase <?php if(!isset($_SESSION['id'])) echo '<hr>'.$Tologin ?></h3>
         </div>
         <div class="cancel-icon close-form"></div>
         <label for="login-form" class="header"><h3>Checkout</h3></label>
-        <input type="text"  class="text-field phone" placeholder="Phone Number">
-        <input type="text" name="addy" class="text-field address" placeholder="Address">
+        <input type="number" maxlength="11" name="phoneNumber"  class="text-field phone" placeholder="Phone Number">
+        <?php $display = displayErrors($errors, 'phoneNumber'); echo $display; ?>
+        <input type="text" name="address" class="text-field address" placeholder="Address">
+        <?php $display = displayErrors($errors, 'address'); echo $display; ?>
         <input type="text" name="code" class="text-field post-code" placeholder="Post Code">
+        <?php $display = displayErrors($errors, 'code'); echo $display;?>
         <input type="submit" name="chkt" class="def-button checkout" value="Checkout">
       </form>
     </div>

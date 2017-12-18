@@ -3,11 +3,13 @@
       $page_title = "Cart";
 
       $body_id = "Cart";
-      include 'include/catheader.php';
+
+
+      include 'include/user_header.php';
 
       include 'include/controllers.php';
 
-      include 'include/db.php';
+     // include 'include/db.php';
 
     
 
@@ -143,9 +145,9 @@
       <button class="def-button previous">previous</button>
       <button class="def-button next">next</button>
       <div class="index">
-        <a href="#"><p>1</p></a>
-        <a href="#"><p>2</p></a>
-        <a href="#"><p>3</p></a>
+        <a href="cart.php"><p>1</p></a>
+        <a href="cart.php"><p>2</p></a>
+        <a href="cart.php"><p>3</p></a>
       </div>
       <a href="checkout.php"><button class="def-button checkout">Checkout</button></a>
     </div>

@@ -1,8 +1,10 @@
 <?php
+				
+	
 		if (!isset($_SESSION['id'])){
 			# code...
 			$statement = $recent->selectFromRecentlyViewed($conn, $sid);
-			while ($row = $statement->fetch(PDO::FETCH_BOTH)) {
+			while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
 				# code...
 				$data = $recent->selectFromBook($conn, $row['book_id']);
 				$rowb = $data->fetch(PDO::FETCH_ASSOC); ?>
